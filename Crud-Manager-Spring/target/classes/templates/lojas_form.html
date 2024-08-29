@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="cabecalho :: head"></div>
+    <title>Crud Manager - Lojas</title>
+</head>
+<body>
+    <div class="container my-2">
+        <h1>Cadastro de Loja</h1>
+        <form th:action="@{/lojas/register}" th:object="${loja}" method="post">
+            <input type="hidden" id="id" th:field="*{id}">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" th:field="*{nome}" class="form-control" />
+                <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco" th:field="*{endereco}" class="form-control" />
+                <div th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="nomeGerente">Nome do Gerente</label>
+                <input type="text" id="nomeGerente" th:field="*{nomeGerente}" class="form-control" />
+                <div th:if="${#fields.hasErrors('nomeGerente')}" th:errors="*{nomeGerente}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="telefoneDaLoja">Telefone da Loja</label>
+                <input type="text" id="telefoneDaLoja" th:field="*{telefoneDaLoja}" class="form-control" />
+                <div th:if="${#fields.hasErrors('telefoneDaLoja')}" th:errors="*{telefoneDaLoja}" class="text-danger"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>

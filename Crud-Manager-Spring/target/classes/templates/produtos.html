@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="cabecalho :: head"></div>
+    <title>Crud Manager - Produtos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/}">Crud Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/users}">Usuários</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/lojas}">Lojas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/produtos}">Produtos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container my-2">
+        <h1>Produtos</h1>
+        <div>
+            <a th:href="@{produtos/form}" class="btn btn-primary btn-sm mb-3 float-right">Adicionar Produto</a>
+        </div>
+        <table class="table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>Tipo de Produto</th>
+                    <th>Nome</th>
+                    <th>Tamanho</th>
+                    <th>Preço</th>
+                    <th>Loja</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="produto : ${produtos}">
+                    <td th:text="${produto.tipoProduto}"></td>
+                    <td th:text="${produto.nome}"></td>
+                    <td th:text="${produto.tamanho}"></td>
+                    <td th:text="'R$ ' + ${produto.preco}"></td>
+                    <td th:text="${produto.loja.nome}"></td>
+                    <td>
+                        <a th:href="@{/produtos/update/{id}(id = ${produto.id})}" class="btn btn-primary">Alterar</a>
+                        <a th:href="@{/produtos/delete/{id}(id = ${produto.id})}" class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

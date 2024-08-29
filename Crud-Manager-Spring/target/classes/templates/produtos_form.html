@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="cabecalho :: head"></div>
+    <title>Crud Manager - Produtos</title>
+</head>
+<body>
+    <div class="container my-2">
+        <h1>Cadastro de Produto</h1>
+        <form th:action="@{/produtos/register}" th:object="${produto}" method="post">
+            <input type="hidden" id="id" th:field="*{id}">
+            <div class="form-group">
+                <label for="tipoProduto">Tipo de Produto</label>
+                <input type="text" id="tipoProduto" th:field="*{tipoProduto}" class="form-control" />
+                <div th:if="${#fields.hasErrors('tipoProduto')}" th:errors="*{tipoProduto}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" th:field="*{nome}" class="form-control" />
+                <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="tamanho">Tamanho</label>
+                <input type="text" id="tamanho" th:field="*{tamanho}" class="form-control" />
+                <div th:if="${#fields.hasErrors('tamanho')}" th:errors="*{tamanho}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="preco">Preço</label>
+                <input type="number" id="preco" th:field="*{preco}" class="form-control" step="0.01" />
+                <div th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}" class="text-danger"></div>
+            </div>
+            <div class="form-group">
+                <label for="loja">Loja</label>
+                <select id="loja" th:field="*{loja}" class="form-control">
+                    <option th:each="loja : ${lojas}" th:value="${loja.id}" th:text="${loja.nome}"></option>
+                </select>
+                <div th:if="${#fields.hasErrors('loja')}" th:errors="*{loja}" class="text-danger"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>
